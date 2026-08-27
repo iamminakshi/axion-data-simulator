@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-
+  name: data-simulator
   namespace: default
 
 spec:
@@ -19,10 +19,10 @@ spec:
         - name: ghcr-secret
       containers:
         - name: simulator
-          image: ghcr.io/asign796/axion-data-simulator:5e43f4d
+          image: ghcr.io/asign796/axion-data-simulator:9f7de04
           env:
             - name: API_URL
-              value: "http://10.96.191.100:8000/api/v1/telemetry/ingest"
+              value: "http://ingestion-service:8000/api/v1/telemetry/ingest"
             - name: INTERVAL_SECONDS
               value: "5"
           ports:
